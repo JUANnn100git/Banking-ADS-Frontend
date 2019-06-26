@@ -13,13 +13,15 @@ import { PagesComponent } from './pages.component';
 // Componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    AccountSettingsComponent
   ],
   exports: [
     DashboardComponent,
