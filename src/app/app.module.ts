@@ -30,6 +30,8 @@ import { RegisterComponent } from './login/register.component';
     BrowserModule,
     APP_ROUTES,
     PagesModule,
+    FormsModule,
+    ReactiveFormsModule,
     ServiceModule
   ],
   providers: [],

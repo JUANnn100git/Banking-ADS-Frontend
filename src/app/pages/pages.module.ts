@@ -6,6 +6,7 @@ import { PAGES_ROUTES } from './pages.routes';
 
 // Módulos
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Componente Principal
 import { PagesComponent } from './pages.component';
@@ -29,7 +30,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
   ],
   imports: [
     SharedModule,
-    PAGES_ROUTES
+    PAGES_ROUTES,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: []
