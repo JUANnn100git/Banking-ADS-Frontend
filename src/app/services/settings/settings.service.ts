@@ -12,7 +12,7 @@ export class SettingsService {
 
 // tslint:disable-next-line: deprecation
   constructor( @Inject(DOCUMENT) private _document ) {
-    console.log('Servicio Listo');
+    // console.log('Servicio Listo');
     this.cargarAjustes();
    }
 

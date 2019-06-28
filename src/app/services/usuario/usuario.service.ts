@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../../models/usuario.model';
 import { URL_SERVICIOS, CRYPTJS_PRIVATKEY } from '../../config/config';
 import { map } from 'rxjs/operators';
@@ -82,6 +82,20 @@ export class UsuarioService {
                   return true;
                 })
               );
+
+  }
+
+  cargarUsuarios( desde: number = 0, mostrar: number = 5 ) {
+
+    const url = URL_SERVICIOS + '/api/users?pageSize=' + mostrar + '&page=' + desde;
+
+    const headers = new HttpHeaders(
+      {
+        'Authorization': `Bearer ${this.token}`,
+        'Content-Type': 'application/json'
+      });
+
+    return this.http.get( url, { headers} );
 
   }
 

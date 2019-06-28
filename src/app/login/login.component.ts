@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
     this.name = localStorage.getItem('username') || '';
     // Decrypt
     const bytes  = CryptoJS.AES.decrypt(localStorage.getItem('ciphertext'), CRYPTJS_PRIVATKEY);
-    this.password = bytes.toString(CryptoJS.enc.Utf8) || '';
+    const plaintText = bytes.toString(CryptoJS.enc.Utf8);
     // End Decrypt
+    this.password = plaintText || '';
     if ( this.name.length > 1 ) {
       this.recuerdame = true;
     }

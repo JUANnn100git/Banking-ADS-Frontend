@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { PAGES_ROUTES } from './pages.routes';
 
 // Módulos
+import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -15,6 +16,9 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { CuentasComponent } from './cuentas/cuentas/cuentas.component';
+import { ClientesComponent } from './cuentas/clientes/clientes.component';
+import { TransaccionesComponent } from './cuentas/transacciones/transacciones.component';
 
 
 @NgModule({
@@ -22,13 +26,16 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     PagesComponent,
     DashboardComponent,
     UsuariosComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    CuentasComponent,
+    ClientesComponent,
+    TransaccionesComponent
   ],
   exports: [
-    DashboardComponent,
-    UsuariosComponent
+    DashboardComponent
   ],
   imports: [
+    CommonModule,
     SharedModule,
     PAGES_ROUTES,
     FormsModule,
