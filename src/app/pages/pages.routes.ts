@@ -4,6 +4,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { LoginGuardGuard } from '../services/service.index';
 
 
 
@@ -11,6 +12,7 @@ const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
+        canActivate: [ LoginGuardGuard ],
         children: [
             { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard' } },
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes del Tema' } },

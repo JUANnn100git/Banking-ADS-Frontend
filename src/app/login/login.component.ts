@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { UsuarioService } from '../services/usuario/usuario.service';
+import { Usuario } from '../models/usuario.model';
+import * as CryptoJS from 'crypto-js';
+import { CRYPTJS_PRIVATKEY } from '../config/config';
 
 declare function init_plugins();
 
@@ -10,15 +15,35 @@ declare function init_plugins();
 })
 export class LoginComponent implements OnInit {
 
-  constructor( public router: Router ) { }
+  name: string;
+  password: string;
+  recuerdame: boolean = false;
+
+  constructor( public router: Router,
+               public _usuarioService: UsuarioService ) { }
 
   ngOnInit() {
     init_plugins();
+    this.name = localStorage.getItem('username') || '';
+    // Decrypt
+    const bytes  = CryptoJS.AES.decrypt(localStorage.getItem('ciphertext'), CRYPTJS_PRIVATKEY);
+    this.password = bytes.toString(CryptoJS.enc.Utf8) || '';
+    // End Decrypt
+    if ( this.name.length > 1 ) {
+      this.recuerdame = true;
+    }
   }
 
-  ingresar() {
+  ingresar( forma: NgForm ) {
 
-    this.router.navigate([ '/dashboard' ]);
+    if ( forma.invalid ) {
+      return;
+    }
+
+    const usuario = new Usuario(null, forma.value.name, forma.value.password, null);
+
+    this._usuarioService.login( usuario, forma.value.recuerdame )
+                  .subscribe( correcto => this.router.navigate(['/dashboard']));
 
   }
 
